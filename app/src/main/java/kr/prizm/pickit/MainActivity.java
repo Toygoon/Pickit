@@ -177,14 +177,21 @@ public class MainActivity extends ActionBarActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         String str = userInput.getText().toString();
-                                        FileOutputStream fosMemo = null;
-                                        try {
-                                            fosMemo = MainActivity.this.openFileOutput("Memo.txt", Context.MODE_PRIVATE);
-                                            fosMemo.write(str.getBytes());
-                                            fosMemo.close();
-                                        } catch (Exception e) { e.printStackTrace(); }
-                                        Intent i = new Intent(MainActivity.this, CardActivity2.class);
-                                        startActivity(i);
+                                        if (str.isEmpty() == true || str.equals("")) {
+                                            Toast.makeText(MainActivity.this, "문자를 입력 해 주세요.", Toast.LENGTH_LONG).show();
+                                            return;
+                                        } else {
+                                            FileOutputStream fosMemo = null;
+                                            try {
+                                                fosMemo = MainActivity.this.openFileOutput("Memo.txt", Context.MODE_PRIVATE);
+                                                fosMemo.write(str.getBytes());
+                                                fosMemo.close();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                            Intent i = new Intent(MainActivity.this, CardActivity2.class);
+                                            startActivity(i);
+                                        }
                                     }
                                 })
                         .setNegativeButton("Cancel",

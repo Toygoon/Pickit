@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,17 +22,21 @@
                 <action android:name="android.intent.action.SEND" />
             </intent-filter>
         </activity>
-        <activity android:name=".CardActivity" />
+        <activity android:name=".CardActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ImageViewActivity"
-            android:theme="@style/AlertDialogCustom" />
+            android:theme="@style/AlertDialogCustom"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SelectActivity"
-            android:label="@string/title_activity_select" >
+            android:label="@string/title_activity_select"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CardActivity2"
-            android:label="@string/title_activity_card_activity2" >
+            android:label="@string/title_activity_card_activity2"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

@@ -3,6 +3,7 @@ package kr.prizm.pickit;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -63,7 +64,6 @@ public class CardActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
-
 
         // 툴바를 액션바로 지정
 
@@ -171,7 +171,7 @@ public class CardActivity extends ActionBarActivity {
 
         view = rowContainer.findViewById(R.id.row6);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
-            ((TextView) view.findViewById(R.id.textView)).setText("말을아무말을합니다.님아근데이거공유하셈");
+            ((TextView) view.findViewById(R.id.textView)).setText("큰 깨달음을 얻어 세인들로부터 존경까지를 받아내려고 하지 말자.");
 
     }
 

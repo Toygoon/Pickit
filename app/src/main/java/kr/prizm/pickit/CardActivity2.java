@@ -139,7 +139,7 @@ public class CardActivity2 extends ActionBarActivity {
 
         view = rowContainer.findViewById(R.id.row6);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
-        ((TextView) view.findViewById(R.id.textView)).setText("말을아무말을합니다.님아근데이거공유하셈");
+        ((TextView) view.findViewById(R.id.textView)).setText("큰 깨달음을 얻어 세인들로부터 존경까지를 받아내려고 하지 말자.");
 
     }
 

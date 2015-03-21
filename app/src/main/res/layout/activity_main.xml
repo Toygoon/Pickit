@@ -67,7 +67,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="100dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_width="35dp"
+                    android:layout_width="30dp"
                     android:layout_height="50dp"
                     android:onClick="onClick"
                     android:scaleType="fitCenter"/>
@@ -78,7 +78,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="100dp"
                     android:layout_width="35dp"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginBottom="10dp"
                     android:onClick="onClick"
                     android:scaleType="fitCenter"/>
