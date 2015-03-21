@@ -161,13 +161,6 @@ public class CardActivity2 extends ActionBarActivity {
 
         // 로우값을 찾고 그에대한 클릭이벤트를 부여합니다.
 
-        findViewById(R.id.row1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadImageViewByUri((ImageView) view.findViewById(R.id.imageView));
-
-            }
-        });
 
         findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
             @Override

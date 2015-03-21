@@ -7,6 +7,6 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string name="title_activity_select">SelectActivity</string>
-    <string name="title_activity_card_activity2">CardActivity2</string>
+    <string name="title_activity_card_activity2">Pickit</string>
 
 </resources>

@@ -206,6 +206,11 @@ public class MainActivity extends ActionBarActivity {
                 startActivityForResult(i, REQ_CODE_GALLERY);
                 break;
             }
+            case R.id.view: {
+                Intent i = new Intent(MainActivity.this, CardActivity2.class);
+                startActivity(i);
+                break;
+            }
         }
     }
 
