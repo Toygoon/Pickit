@@ -154,6 +154,7 @@ public class MainActivity extends ActionBarActivity {
         switch(v.getId()) {
             case R.id.text: {
                 Toast.makeText(MainActivity.this, "TEXT BUTTON PRESSED", Toast.LENGTH_SHORT).show();
+                break;
             }
             case R.id.photo: {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
@@ -161,6 +162,7 @@ public class MainActivity extends ActionBarActivity {
                 i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivityForResult(i, REQ_CODE_GALLERY);
+                break;
             }
         }
     }
