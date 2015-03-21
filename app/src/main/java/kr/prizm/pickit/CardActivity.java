@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,6 +37,9 @@ public class CardActivity extends ActionBarActivity {
     private Toolbar toolbar;
     private DrawerLayout Drawer;
     private ActionBarDrawerToggle mDrawerToggle;
+    private ImageButton share_btn;
+    private ImageButton delete_btn;
+    private String tmp2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class CardActivity extends ActionBarActivity {
         Intent i = getIntent();
         String tmp = i.getStringExtra("imgpath");
         Log.d("dfsdfasdfsdsdf: ", tmp);
+        tmp2 = tmp;
         // 로우값 채우기
 
         view = rowContainer.findViewById(R.id.row1);
@@ -153,6 +158,21 @@ public class CardActivity extends ActionBarActivity {
             }
         });
 
+        findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.setAction(Intent.ACTION_SEND);
+                i.putExtra(Intent.EXTRA_TEXT, "Hi! Galaxy!");
+                i.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + tmp2));
+                i.setType("image/*");
+                startActivity(i);
+               // Log.d("sdfsdfdfsdfsdf: ", String.valueOf(tmp));
+            }
+         });
+
+
+
         findViewById(R.id.row2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +210,7 @@ public class CardActivity extends ActionBarActivity {
 
     public void loadImageViewByUri(ImageView imageView) {
 
-        String tmp = getIntent().getStringExtra("imgpath");
+        String tmp  = getIntent().getStringExtra("imgpath");
         Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
         /*
         imageView.buildDrawingCache();
