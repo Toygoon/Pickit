@@ -4,7 +4,8 @@
     tools:context=".CardActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fafafa">
 
     //액션바를 대신할 툴바 레이아웃
 
@@ -13,7 +14,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="#cf66c9"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:theme="@style/Toolbar" />
@@ -53,6 +54,7 @@
                 android:paddingRight="2dp"
                 android:paddingBottom="4dp"
                 android:orientation="vertical"
+                android:background="#fafafa"
 
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true">
