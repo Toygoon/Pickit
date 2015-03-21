@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CardActivity"/>
+        <activity android:name=".ImageViewActivity"/>
         <activity
             android:name=".SelectActivity"
             android:label="@string/title_activity_select" >

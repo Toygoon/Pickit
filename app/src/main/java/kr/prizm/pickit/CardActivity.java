@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -28,6 +29,7 @@ public class CardActivity extends ActionBarActivity {
     private ViewGroup rowContainer;
     private static final int SCALE_DELAY = 200;
     private View view;
+    private View view2;
     private Toolbar toolbar;
     private DrawerLayout Drawer;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -66,6 +68,7 @@ public class CardActivity extends ActionBarActivity {
         // 로우값 채우기
 
         view = rowContainer.findViewById(R.id.row1);
+        view2 = rowContainer.findViewById(R.id.row2);
 
         int day = 0;
 
@@ -91,16 +94,22 @@ public class CardActivity extends ActionBarActivity {
 
         }
 
+
         ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(resized); //R.drawable.ic_cast_connected_grey600_24dp
         view = rowContainer.findViewById(R.id.row2);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_2);
+
+
+
         view = rowContainer.findViewById(R.id.row3);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_3);
+
         view = rowContainer.findViewById(R.id.row4);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_4);
+
         view = rowContainer.findViewById(R.id.row5);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_5);
@@ -130,14 +139,26 @@ public class CardActivity extends ActionBarActivity {
 
         findViewById(R.id.row1).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://www.naver.com"));
-                startActivity(intent1);
+            public void onClick(View view) {
+                loadImageView((ImageView) view.findViewById(R.id.imageView));
 
             }
         });
 
+
+    }
+
+    public void loadImageView(ImageView imageView) {
+        Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
+        imageView.buildDrawingCache();
+        Bitmap bitmap = imageView.getDrawingCache();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream);
+        byte[] food = stream.toByteArray();
+        Bundle extras = new Bundle();
+        intent.putExtras(extras);
+        intent.putExtra("picture", food);
+        startActivity(intent);
 
     }
 
