@@ -1,5 +1,6 @@
 package kr.prizm.pickit;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -37,10 +40,23 @@ public class CardActivity extends ActionBarActivity {
     private DrawerLayout Drawer;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    String TITLES[] = {"Text","Photo","Favorite"};
+    int ICONS[] = {R.drawable.m1,R.drawable.m2,R.drawable.m3};
+
+    RecyclerView mRecyclerView;                           // Declaring RecyclerView
+    RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
+    RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
+    String NAME = "Name";
+    String EMAIL = "Email";
+    int PROFILE = R.drawable.owner;
+
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
+
 
         // 툴바를 액션바로 지정
 
@@ -58,6 +74,29 @@ public class CardActivity extends ActionBarActivity {
         mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         Drawer.setDrawerListener(mDrawerToggle);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter = new MyAdapter(TITLES,ICONS,NAME,EMAIL,PROFILE);       // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
+        mRecyclerView.setAdapter(mAdapter);                              // Setting the adapter to RecyclerView
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        switch (position) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+
+                        }
+                    }
+                })
+        );
 
 
         // 카드 애니메이션
@@ -131,6 +170,7 @@ public class CardActivity extends ActionBarActivity {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
     }
+
     public void fillRow(View view, final String title, final String description) {
 
         // 제목 아이디값을 찾습니다
