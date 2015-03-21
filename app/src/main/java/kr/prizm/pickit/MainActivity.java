@@ -103,14 +103,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        Button tmpBtn = (Button) findViewById(R.id.card);
-        tmpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CardActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
