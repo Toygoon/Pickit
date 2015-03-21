@@ -189,6 +189,7 @@ public class CardActivity extends ActionBarActivity {
     }
 
     public void loadImageViewByUri(ImageView imageView) {
+
         String tmp = getIntent().getStringExtra("imgpath");
         Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
         /*
