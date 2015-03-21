@@ -66,7 +66,10 @@ public class CardActivity extends ActionBarActivity {
         // 로우값 채우기
 
         view = rowContainer.findViewById(R.id.row1);
-        fillRow(view, "캐스트모드 켜기", "캐스트모드");
+
+        int day = 0;
+
+        fillRow(view, "TODAY", "");
 
         Uri uriFromPath = Uri.fromFile(new File(tmp));
 
@@ -89,19 +92,18 @@ public class CardActivity extends ActionBarActivity {
         }
 
         ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(resized); //R.drawable.ic_cast_connected_grey600_24dp
-        Log.d("TAG", tmp.toString());
         view = rowContainer.findViewById(R.id.row2);
-        fillRow(view, "캐스트모드 끄기", "캐스트모드");
-        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.ic_cast_grey600_24dp);
+        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
+        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_2);
         view = rowContainer.findViewById(R.id.row3);
-        fillRow(view, "랩탑", "노트북 컴퓨터");
-        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.ic_computer_grey600_24dp);
+        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
+        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_3);
         view = rowContainer.findViewById(R.id.row4);
-        fillRow(view, "모니터", "맥 모니터");
-        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.ic_desktop_mac_grey600_24dp);
+        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
+        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_4);
         view = rowContainer.findViewById(R.id.row5);
-        fillRow(view, "모니터2", "윈도우 모니터");
-        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.ic_desktop_windows_grey600_24dp);
+        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
+        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_5);
 
     }
 

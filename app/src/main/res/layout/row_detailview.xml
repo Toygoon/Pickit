@@ -61,9 +61,9 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:gravity="right"
+            android:gravity="left"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:maxLines="1"
             android:text="Text"
             android:textColor="#000"
@@ -84,15 +84,6 @@
             android:layout_alignParentStart="true"
             android:maxWidth="360dp"
             android:scaleType="centerCrop" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/textView"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
