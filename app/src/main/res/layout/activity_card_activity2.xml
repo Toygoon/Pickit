@@ -86,7 +86,10 @@
                     android:id="@+id/row5"
                     layout="@layout/row_detailview"/>
 
+                <include
 
+                    android:id="@+id/row6"
+                    layout="@layout/row_textview"/>
             </LinearLayout>
 
         </ScrollView>

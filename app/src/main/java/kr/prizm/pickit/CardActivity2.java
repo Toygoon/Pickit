@@ -137,6 +137,10 @@ public class CardActivity2 extends ActionBarActivity {
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_5);
 
+        view = rowContainer.findViewById(R.id.row6);
+        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
+        ((TextView) view.findViewById(R.id.textView)).setText("말을아무말을합니다.님아근데이거공유하셈");
+
     }
 
     // 토글아이콘 상태 동기화
