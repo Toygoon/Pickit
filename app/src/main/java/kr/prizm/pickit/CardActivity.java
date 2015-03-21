@@ -131,26 +131,35 @@ public class CardActivity extends ActionBarActivity {
 
 
         Bitmap bitmap = null;
-        try {
+        if(tmp != null) {
+
+
             Uri uriFromPath = Uri.fromFile(new File(tmp));
-            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            try {
+
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
+            }catch (FileNotFoundException e) {
+
+            }
+            int height = bitmap.getHeight();
+            int width = bitmap.getWidth();
+            Bitmap resized = null;
+
+            while (height > 2000) {
+                resized = Bitmap.createScaledBitmap(bitmap, (width * 2000) / height, 2000, true);
+                height = resized.getHeight();
+                width = resized.getWidth();
+
+            }
+
+
+
+
+            ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(resized); //R.drawable.ic_cast_connected_grey600_24dp
+
+
         }
 
-        int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
-        Bitmap resized = null;
-
-        while (height > 2000) {
-            resized = Bitmap.createScaledBitmap(bitmap, (width * 2000) / height, 2000, true);
-            height = resized.getHeight();
-            width = resized.getWidth();
-
-        }
-
-
-        ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(resized); //R.drawable.ic_cast_connected_grey600_24dp
         view = rowContainer.findViewById(R.id.row2);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_2);
