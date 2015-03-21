@@ -50,8 +50,8 @@
                 android:id="@+id/row_container"
 
                 android:paddingTop="4dp"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:paddingBottom="4dp"
                 android:orientation="vertical"
                 android:background="#fafafa"
