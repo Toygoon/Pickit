@@ -2,6 +2,7 @@ package kr.prizm.pickit;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,18 +15,22 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState;
 
+
+
 public class MainActivity extends ActionBarActivity {
 
     final String TAG = "asdfasdfasdf";
+    private Toolbar toolbar;
 
     private SlidingUpPanelLayout mLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Button launch = (Button)findViewById(R.id.card_button);
         launch.setOnClickListener(new Button.OnClickListener(){
