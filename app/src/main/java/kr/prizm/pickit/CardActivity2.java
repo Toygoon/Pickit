@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +32,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 
-public class CardActivity extends ActionBarActivity {
+public class CardActivity2 extends ActionBarActivity {
 
     private ViewGroup rowContainer;
     private static final int SCALE_DELAY = 200;
@@ -62,7 +60,7 @@ public class CardActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card);
+        setContentView(R.layout.activity_card_activity2);
 
 
         // 툴바를 액션바로 지정
@@ -112,46 +110,16 @@ public class CardActivity extends ActionBarActivity {
             View rowView = rowContainer.getChildAt(i);
             rowView.animate().setStartDelay(100 + i * SCALE_DELAY).scaleX(1).scaleY(1);
         }
-
-        // 버튼
-
-
-        Intent i = getIntent();
-        String tmp = i.getStringExtra("imgpath");
-        tmp2 = tmp;
-        // 로우값 채우기
-
-        view = rowContainer.findViewById(R.id.row1);
-        view2 = rowContainer.findViewById(R.id.row2);
-
         int day = 0;
-
+        view = rowContainer.findViewById(R.id.row1);
         fillRow(view, "TODAY", "");
-
-
-
-        Bitmap bitmap = null;
         try {
-            Uri uriFromPath = Uri.fromFile(new File(tmp));
-            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-            int height = bitmap.getHeight();
-            int width = bitmap.getWidth();
-            Bitmap resized = null;
-
-            while (height > 2000) {
-                resized = Bitmap.createScaledBitmap(bitmap, (width * 2000) / height, 2000, true);
-                height = resized.getHeight();
-                width = resized.getWidth();
-
-            }
-
-
-            ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(resized); //R.drawable.ic_cast_connected_grey600_24dp
-
+            FileInputStream fisMemo = CardActivity2.this.openFileInput("Memo.txt");
+            byte[] memoData = new byte[fisMemo.available()];
+            while(fisMemo.read(memoData) != -1) {}
+            fisMemo.close();
+            ((TextView) view.findViewById(R.id.textView)).setText(new String(memoData));
+        } catch (Exception e) { e.printStackTrace(); }
 
         view = rowContainer.findViewById(R.id.row2);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
@@ -168,10 +136,6 @@ public class CardActivity extends ActionBarActivity {
         view = rowContainer.findViewById(R.id.row5);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_5);
-
-        view = rowContainer.findViewById(R.id.row6);
-        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
-            ((TextView) view.findViewById(R.id.textView)).setText("말을아무말을합니다.님아근데이거공유하셈");
 
     }
 
@@ -214,9 +178,9 @@ public class CardActivity extends ActionBarActivity {
                 i.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + tmp2));
                 i.setType("image/*");
                 startActivity(i);
-               // Log.d("sdfsdfdfsdfsdf: ", String.valueOf(tmp));
+                // Log.d("sdfsdfdfsdfsdf: ", String.valueOf(tmp));
             }
-         });
+        });
 
 
 
@@ -256,7 +220,7 @@ public class CardActivity extends ActionBarActivity {
     }
 
     public void loadImageViewByUri(ImageView imageView) {
-        Dialog dialog = new Dialog(CardActivity.this);
+        Dialog dialog = new Dialog(CardActivity2.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_imageview);
         dialog.setCancelable(true);
@@ -308,12 +272,12 @@ public class CardActivity extends ActionBarActivity {
 
 
     public void loadImageView(ImageView imageView) {
-        Dialog dialog = new Dialog(CardActivity.this);
+        Dialog dialog = new Dialog(CardActivity2.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_imageview);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         ImageView fb = (ImageView) dialog.findViewById(R.id.imageView);
-        Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
+        Intent intent = new Intent(CardActivity2.this, ImageViewActivity.class);
 
         imageView.buildDrawingCache();
         Bitmap bitmap = imageView.getDrawingCache();

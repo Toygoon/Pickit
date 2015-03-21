@@ -183,8 +183,8 @@ public class MainActivity extends ActionBarActivity {
                                             fosMemo.write(str.getBytes());
                                             fosMemo.close();
                                         } catch (Exception e) { e.printStackTrace(); }
-                                        Intent intent = new Intent(MainActivity.this, CardActivity.class);
-                                        startActivity(intent);
+                                        Intent i = new Intent(MainActivity.this, CardActivity2.class);
+                                        startActivity(i);
                                     }
                                 })
                         .setNegativeButton("Cancel",
