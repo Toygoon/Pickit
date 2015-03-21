@@ -58,6 +58,7 @@ public class MainActivity extends ActionBarActivity {
 
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.setPanelState(PanelState.HIDDEN);
+        mLayout.setCoveredFadeColor(Color.TRANSPARENT);
         mLayout.setPanelSlideListener(new PanelSlideListener() {
 
             @Override
