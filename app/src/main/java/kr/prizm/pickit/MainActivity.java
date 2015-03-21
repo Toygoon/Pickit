@@ -1,9 +1,12 @@
 package kr.prizm.pickit;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,18 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button launch = (Button)findViewById(R.id.card_button);
+        launch.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v) {
+
+// TODO Auto-generated method stub
+                Intent intent = new Intent(MainActivity.this, CardActivity.class);
+// 두번째 액티비티를 실행하기 위한 인텐트
+                startActivity(intent);
+// 두번째 액티비티를 실행합니다.
+            }
+        });
     }
 
 
