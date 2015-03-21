@@ -1,10 +1,12 @@
 package kr.prizm.pickit;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -260,9 +262,42 @@ public class CardActivity extends ActionBarActivity {
     }
 
     public void loadImageViewByUri(ImageView imageView) {
+        Dialog dialog = new Dialog(CardActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_imageview);
+        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        ImageView fb = (ImageView) dialog.findViewById(R.id.imageView);
 
         String tmp  = getIntent().getStringExtra("imgpath");
-        Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
+
+
+
+        Uri uriFromPath = Uri.fromFile(new File(tmp));
+
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
+        Bitmap resized = null;
+
+        while (height > 2000) {
+            resized = Bitmap.createScaledBitmap(bitmap, (width * 2000) / height, 2000, true);
+            height = resized.getHeight();
+            width = resized.getWidth();
+
+        }
+        fb.setImageBitmap(resized);
+        dialog.show();
+
+
+        //Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
         /*
         imageView.buildDrawingCache();
         Bitmap bitmap = imageView.getDrawingCache();
@@ -271,25 +306,32 @@ public class CardActivity extends ActionBarActivity {
         byte[] food = stream.toByteArray();
         Bundle extras = new Bundle();
         intent.putExtras(extras);*/
-        intent.putExtra("picture", tmp);
-        intent.putExtra("int", 1);
-        startActivity(intent);
+        //intent.putExtra("picture", tmp);
+        //intent.putExtra("int", 1);
+        //startActivity(intent);
 
     }
 
 
     public void loadImageView(ImageView imageView) {
+        Dialog dialog = new Dialog(CardActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_imageview);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        ImageView fb = (ImageView) dialog.findViewById(R.id.imageView);
         Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
 
         imageView.buildDrawingCache();
         Bitmap bitmap = imageView.getDrawingCache();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        fb.setImageBitmap(bitmap);
+        dialog.show();/*
         byte[] food = stream.toByteArray();
         Bundle extras = new Bundle();
         intent.putExtras(extras);
         intent.putExtra("picture", food);
-        startActivity(intent);
+        startActivity(intent);*/
 
     }
 

@@ -49,6 +49,7 @@ public class ImageViewActivity extends Activity {
             byte[] food = extras.getByteArray("picture");
             Bitmap fo = BitmapFactory.decodeByteArray(food, 0, food.length);
             imageView.setImageBitmap(fo);
+
         }
 
         /*
