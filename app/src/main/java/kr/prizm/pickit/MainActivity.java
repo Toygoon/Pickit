@@ -28,6 +28,14 @@ public class MainActivity extends ActionBarActivity {
     private SlidingUpPanelLayout mLayout;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLayout.setPanelState(PanelState.COLLAPSED);
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -38,6 +46,7 @@ public class MainActivity extends ActionBarActivity {
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.setPanelState(PanelState.HIDDEN);
         mLayout.setPanelSlideListener(new PanelSlideListener() {
+
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
@@ -46,9 +55,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onPanelExpanded(View panel) {
                 Log.i(TAG, "onPanelExpanded");
-                Intent intent = new Intent(MainActivity.this, CardActivity.class);
+                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
                 startActivity(intent);
-                finish();
             }
 
             @Override
@@ -68,7 +76,14 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-
+        Button tmpBtn = (Button) findViewById(R.id.card);
+        tmpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

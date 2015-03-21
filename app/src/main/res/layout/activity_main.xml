@@ -17,6 +17,12 @@
         app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:theme="@style/Toolbar" />
 
+    <Button
+        android:id="@+id/card"
+        android:text="CardActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <ImageView
         android:src="@drawable/bg"
         android:scaleType="centerCrop"
