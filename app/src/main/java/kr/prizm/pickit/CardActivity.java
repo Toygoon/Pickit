@@ -1,6 +1,8 @@
 package kr.prizm.pickit;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +18,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 
 public class CardActivity extends ActionBarActivity {
@@ -62,7 +67,16 @@ public class CardActivity extends ActionBarActivity {
 
         view = rowContainer.findViewById(R.id.row1);
         fillRow(view, "캐스트모드 켜기", "캐스트모드");
-        ((ImageView) view.findViewById(R.id.imageView)).setImageURI((Uri.parse("tmp"))); //R.drawable.ic_cast_connected_grey600_24dp
+
+        Uri uriFromPath = Uri.fromFile(new File(tmp));
+
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(bitmap); //R.drawable.ic_cast_connected_grey600_24dp
         Log.d("TAG", tmp.toString());
         view = rowContainer.findViewById(R.id.row2);
         fillRow(view, "캐스트모드 끄기", "캐스트모드");
