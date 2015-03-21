@@ -53,20 +53,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        start_btn = (Button)findViewById(R.id.start_btn);
-
-        start_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-                i.setType("image/*");
-                i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivityForResult(i, REQ_CODE_GALLERY);
-            }
-
-        });
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -76,30 +62,22 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
-                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
             }
 
             @Override
             public void onPanelExpanded(View panel) {
-                Log.i(TAG, "onPanelExpanded");
-                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
-                startActivity(intent);
             }
 
             @Override
             public void onPanelCollapsed(View panel) {
-                Log.i(TAG, "onPanelCollapsed");
-
             }
 
             @Override
             public void onPanelAnchored(View panel) {
-                Log.i(TAG, "onPanelAnchored");
             }
 
             @Override
             public void onPanelHidden(View panel) {
-                Log.i(TAG, "onPanelHidden");
             }
         });
 
@@ -171,6 +149,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.text: {
+                Toast.makeText(MainActivity.this, "TEXT BUTTON PRESSED", Toast.LENGTH_SHORT).show();
+            }
+            case R.id.photo: {
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.setType("image/*");
+                i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(i, REQ_CODE_GALLERY);
+            }
+        }
+    }
 
 }

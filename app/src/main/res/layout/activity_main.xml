@@ -26,8 +26,9 @@
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:sothree="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sliding_layout"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:gravity="bottom"
         sothree:umanoPanelHeight="68dp"
         sothree:umanoShadowHeight="0dp">
@@ -46,21 +47,41 @@
             android:src="@drawable/slide"
             android:textSize="16sp"
             android:color="@android:color/transparent">
-            <ImageView
-                android:layout_alignParentTop="true"
-                android:src="@drawable/slide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:id="@+id/root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/slide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/text"
+                    android:background="@drawable/text"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="35dp"
+                    android:layout_height="50dp"
+                    android:onClick="onClick"
+                    android:scaleType="fitCenter"/>
+                <Button
+                    android:id="@+id/photo"
+                    android:background="@drawable/photo"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="100dp"
+                    android:layout_width="35dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="onClick"
+                    android:scaleType="fitCenter"/>
+                </RelativeLayout>
             </RelativeLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
-
-    <Button
-        android:id="@+id/start_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="220dip"
-        android:layout_marginTop="50dip"
-
-        />
 
 </RelativeLayout>
