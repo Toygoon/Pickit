@@ -76,7 +76,19 @@ public class CardActivity extends ActionBarActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(bitmap); //R.drawable.ic_cast_connected_grey600_24dp
+
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
+        Bitmap resized = null;
+
+        while (height > 2000) {
+            resized = Bitmap.createScaledBitmap(bitmap, (width * 2000) / height, 2000, true);
+            height = resized.getHeight();
+            width = resized.getWidth();
+
+        }
+
+        ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(resized); //R.drawable.ic_cast_connected_grey600_24dp
         Log.d("TAG", tmp.toString());
         view = rowContainer.findViewById(R.id.row2);
         fillRow(view, "캐스트모드 끄기", "캐스트모드");
