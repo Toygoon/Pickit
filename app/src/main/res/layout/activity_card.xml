@@ -9,6 +9,7 @@
     //액션바를 대신할 툴바 레이아웃
 
     <android.support.v7.widget.Toolbar
+        android:layout_marginTop="24dp"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

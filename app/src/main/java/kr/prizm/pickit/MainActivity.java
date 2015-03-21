@@ -1,6 +1,7 @@
 package kr.prizm.pickit;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -64,6 +67,7 @@ public class MainActivity extends ActionBarActivity {
                 Log.i(TAG, "onPanelHidden");
             }
         });
+
 
     }
 
