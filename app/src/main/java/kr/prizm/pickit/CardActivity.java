@@ -64,7 +64,7 @@ public class CardActivity extends ActionBarActivity {
 
         Intent i = getIntent();
         String tmp = i.getStringExtra("imgpath");
-
+        Log.d("dfsdfasdfsdsdf: ", tmp);
         // 로우값 채우기
 
         view = rowContainer.findViewById(R.id.row1);
@@ -140,7 +140,7 @@ public class CardActivity extends ActionBarActivity {
         findViewById(R.id.row1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadImageView((ImageView) view.findViewById(R.id.imageView));
+                loadImageViewByUri((ImageView) view.findViewById(R.id.imageView));
 
             }
         });
@@ -180,8 +180,27 @@ public class CardActivity extends ActionBarActivity {
 
     }
 
+    public void loadImageViewByUri(ImageView imageView) {
+        String tmp = getIntent().getStringExtra("imgpath");
+        Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
+        /*
+        imageView.buildDrawingCache();
+        Bitmap bitmap = imageView.getDrawingCache();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] food = stream.toByteArray();
+        Bundle extras = new Bundle();
+        intent.putExtras(extras);*/
+        intent.putExtra("picture", tmp);
+        intent.putExtra("int", 1);
+        startActivity(intent);
+
+    }
+
+
     public void loadImageView(ImageView imageView) {
         Intent intent = new Intent(CardActivity.this, ImageViewActivity.class);
+
         imageView.buildDrawingCache();
         Bitmap bitmap = imageView.getDrawingCache();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
