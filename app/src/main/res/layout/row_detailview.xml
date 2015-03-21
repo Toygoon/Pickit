@@ -5,9 +5,9 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:clickable="true"
+    android:layout_height="180dp"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     cardview:cardCornerRadius="2dp"
-    android:layout_height="180dp"
     android:scaleX="0"
     android:scaleY="0">
     <RelativeLayout
@@ -75,14 +75,24 @@
 
             android:src="@drawable/ic_launcher"
             android:layout_gravity="center"
-            android:tint="@color/gray_tint"
             android:id="@+id/imageView"
             android:layout_width="360dp"
             android:layout_height="80dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/title"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/title" />
+            android:maxWidth="360dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textView"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
