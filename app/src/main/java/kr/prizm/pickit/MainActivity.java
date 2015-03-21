@@ -19,7 +19,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState;
 
 public class MainActivity extends ActionBarActivity {
 
-    final String TAG = "asdfasdfasdf";
+    final String TAG = "LOGDAN";
     private Toolbar toolbar;
 
     private SlidingUpPanelLayout mLayout;
@@ -32,32 +32,20 @@ public class MainActivity extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button launch = (Button)findViewById(R.id.card_button);
-        launch.setOnClickListener(new Button.OnClickListener(){
-            public void onClick(View v) {
-
-// TODO Auto-generated method stub
-                Intent intent = new Intent(MainActivity.this, CardActivity.class);
-// 두번째 액티비티를 실행하기 위한 인텐트
-                startActivity(intent);
-// 두번째 액티비티를 실행합니다.
-            }
-        });
-
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.setPanelState(PanelState.HIDDEN);
         mLayout.setPanelSlideListener(new PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
-                if(slideOffset > 0.4)
-                    Toast.makeText(MainActivity.this, "SSIBALLSDFLASFLADSLFDS", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPanelExpanded(View panel) {
                 Log.i(TAG, "onPanelExpanded");
-
+                Intent intent = new Intent(MainActivity.this, CardActivity.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override
