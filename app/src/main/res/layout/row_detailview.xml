@@ -83,7 +83,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:maxWidth="360dp"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:layout_width="wrap_content"
