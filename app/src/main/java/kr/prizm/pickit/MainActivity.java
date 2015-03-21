@@ -1,7 +1,9 @@
 package kr.prizm.pickit;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -15,18 +17,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState;
 
+import java.io.FileOutputStream;
 import java.net.URI;
 
 
@@ -153,7 +158,44 @@ public class MainActivity extends ActionBarActivity {
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.text: {
-                Toast.makeText(MainActivity.this, "TEXT BUTTON PRESSED", Toast.LENGTH_SHORT).show();
+                LayoutInflater li = LayoutInflater.from(this);
+                View promptsView = li.inflate(R.layout.prompts, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        this);
+
+                // set prompts.xml to alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+
+                final EditText userInput = (EditText) promptsView
+                        .findViewById(R.id.editTextDialogUserInput);
+
+                // set dialog message
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        String str = userInput.getText().toString();
+                                        FileOutputStream fosMemo = null;
+                                        try {
+                                            fosMemo = MainActivity.this.openFileOutput("Memo.txt", Context.MODE_PRIVATE);
+                                            fosMemo.write(str.getBytes());
+                                            fosMemo.close();
+                                        } catch (Exception e) { e.printStackTrace(); }
+                                        Intent intent = new Intent(MainActivity.this, CardActivity.class);
+                                        startActivity(intent);
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
                 break;
             }
             case R.id.photo: {

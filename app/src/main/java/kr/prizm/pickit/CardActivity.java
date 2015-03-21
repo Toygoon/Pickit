@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 
@@ -115,7 +116,6 @@ public class CardActivity extends ActionBarActivity {
 
         Intent i = getIntent();
         String tmp = i.getStringExtra("imgpath");
-        Log.d("dfsdfasdfsdsdf: ", tmp);
         tmp2 = tmp;
         // 로우값 채우기
 
@@ -126,10 +126,11 @@ public class CardActivity extends ActionBarActivity {
 
         fillRow(view, "TODAY", "");
 
-        Uri uriFromPath = Uri.fromFile(new File(tmp));
+
 
         Bitmap bitmap = null;
         try {
+            Uri uriFromPath = Uri.fromFile(new File(tmp));
             bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -165,6 +166,16 @@ public class CardActivity extends ActionBarActivity {
         view = rowContainer.findViewById(R.id.row5);
         fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.pi_5);
+
+        view = rowContainer.findViewById(R.id.row6);
+        fillRow(view, String.valueOf(++day) + " DAYS AGO", "");
+        try {
+            FileInputStream fisMemo = CardActivity.this.openFileInput("Memo.txt");
+            byte[] memoData = new byte[fisMemo.available()];
+            while(fisMemo.read(memoData) != -1) {}
+            fisMemo.close();
+            ((TextView) view.findViewById(R.id.textView)).setText(new String(memoData));
+        } catch (Exception e) { e.printStackTrace(); }
 
     }
 
