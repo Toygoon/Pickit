@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,11 +52,18 @@ public class CardActivity extends ActionBarActivity {
             rowView.animate().setStartDelay(100 + i * SCALE_DELAY).scaleX(1).scaleY(1);
         }
 
+        // 버튼
+
+
+        Intent i = getIntent();
+        String tmp = i.getStringExtra("imgpath");
+
         // 로우값 채우기
 
         view = rowContainer.findViewById(R.id.row1);
         fillRow(view, "캐스트모드 켜기", "캐스트모드");
-        ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.ic_cast_connected_grey600_24dp);
+        ((ImageView) view.findViewById(R.id.imageView)).setImageURI((Uri.parse("tmp"))); //R.drawable.ic_cast_connected_grey600_24dp
+        Log.d("TAG", tmp.toString());
         view = rowContainer.findViewById(R.id.row2);
         fillRow(view, "캐스트모드 끄기", "캐스트모드");
         ((ImageView) view.findViewById(R.id.imageView)).setImageResource(R.drawable.ic_cast_grey600_24dp);

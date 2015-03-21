@@ -1,7 +1,12 @@
 package kr.prizm.pickit;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -18,12 +23,16 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelState;
 
+import java.net.URI;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private final int REQ_CODE_GALLERY = 100;
     final String TAG = "LOGDAN";
     private Toolbar toolbar;
+    private Button start_btn;
+    private String img_path;
 
     private SlidingUpPanelLayout mLayout;
 
@@ -31,6 +40,22 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        start_btn = (Button)findViewById(R.id.start_btn);
+
+        start_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.setType("image/*");
+                i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityForResult(i, REQ_CODE_GALLERY);
+
+
+            }
+
+        });
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,7 +96,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -93,4 +117,23 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQ_CODE_GALLERY) {
+            if (resultCode == RESULT_OK) {
+                Uri uri = data.getData();
+                img_path = uri.getPath();
+
+                Intent i = new Intent(this, CardActivity.class);
+                i.putExtra("imgpath", img_path);
+                Log.d("Pictures: ", img_path);
+                startActivity(i);
+            }
+        }
+    }
+
+
+
+
 }

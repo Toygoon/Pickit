@@ -54,4 +54,13 @@
             </RelativeLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="220dip"
+        android:layout_marginTop="50dip"
+
+        />
+
 </RelativeLayout>
