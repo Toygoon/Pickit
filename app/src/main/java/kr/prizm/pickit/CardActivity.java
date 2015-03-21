@@ -145,6 +145,38 @@ public class CardActivity extends ActionBarActivity {
             }
         });
 
+        findViewById(R.id.row2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadImageView((ImageView) view.findViewById(R.id.imageView));
+
+            }
+        });
+
+        findViewById(R.id.row3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadImageView((ImageView) view.findViewById(R.id.imageView));
+
+            }
+        });
+
+        findViewById(R.id.row4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadImageView((ImageView) view.findViewById(R.id.imageView));
+
+            }
+        });
+
+        findViewById(R.id.row5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadImageView((ImageView) view.findViewById(R.id.imageView));
+
+            }
+        });
+
 
     }
 
@@ -153,7 +185,7 @@ public class CardActivity extends ActionBarActivity {
         imageView.buildDrawingCache();
         Bitmap bitmap = imageView.getDrawingCache();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] food = stream.toByteArray();
         Bundle extras = new Bundle();
         intent.putExtras(extras);
